@@ -2,7 +2,9 @@
 var webapp = require('fh-webapp');
 var express = require('express');
 $fh = require('fh-api');
-var mainjs = require('main.js');
+var path = require('path');
+var mainjs = require('./main.js')
+var routes = require('./routes.js')
 
 var app = express();
 
@@ -23,6 +25,10 @@ app.configure(function() {
     app.use(express.cookieParser());
     app.use(express.methodOverride());
     app.use(allowCrossDomain);
+    app.use(express.urlencoded());
+    app.use(express.methodOverride());
+    app.use(app.router);
+    app.use(express.static(path.join(__dirname, 'public')));
 });
 
 // Set up default routes so app can work as before
@@ -34,6 +40,10 @@ app.use('/cloud', webapp.cloud(mainjs));
 
 
 // Route definitions
+// Route definitions
+app.get('/', routes.index);
+
+console.log("DIRNAME", __dirname)
 
 module.exports = app.listen(process.env.FH_PORT || process.env.VCAP_APP_PORT || 8001);
 
