@@ -1,5 +1,8 @@
+var fs = require('fs');
+
+
 module.exports = {
   index: function(req, res) {
-    res.sendfile('public/index.html');
+    res.sendfile('index.html');
   }
 }

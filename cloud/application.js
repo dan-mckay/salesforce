@@ -28,7 +28,7 @@ app.configure(function() {
     app.use(express.urlencoded());
     app.use(express.methodOverride());
     app.use(app.router);
-    app.use(express.static(path.join(__dirname, 'public')));
+    app.use(express.static(path.join(__dirname, '../client/default')));
 });
 
 // Set up default routes so app can work as before
@@ -42,8 +42,6 @@ app.use('/cloud', webapp.cloud(mainjs));
 // Route definitions
 // Route definitions
 app.get('/', routes.index);
-
-console.log("DIRNAME", __dirname)
 
 module.exports = app.listen(process.env.FH_PORT || process.env.VCAP_APP_PORT || 8001);
 
