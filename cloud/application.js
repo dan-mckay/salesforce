@@ -42,6 +42,12 @@ app.use('/cloud', webapp.cloud(mainjs));
 // Route definitions
 // Route definitions
 app.get('/', routes.index);
+app.get('/login', routes.login);
+app.get('/accounts', routes.listAccounts);
+app.get('/cases', routes.listCases);
+app.get('/opps', routes.listOpps);
+app.get('/campaigns', routes.listCampaigns);
+app.get('/accounts/:accountId', routes.accountDetails)
 
 module.exports = app.listen(process.env.FH_PORT || process.env.VCAP_APP_PORT || 8001);
 
