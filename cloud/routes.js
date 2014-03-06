@@ -7,8 +7,6 @@ var conn = new sf.Connection({
   loginUrl: creds.url
 });
 
-console.log("conn", conn)
-
 module.exports = {
 
   index: function(req, res) {
@@ -71,10 +69,10 @@ module.exports = {
     });
   },
 
-  getCaseDetails: function(req, res) {
+  caseDetails: function(req, res) {
     conn.sobject('Case').retrieve(req.params.caseId, function(err, caseDetails) {
       if (err) res.send(err);
-      res.send(caseDetails.objectDescribe);
+      res.send(caseDetails);
     });
   }
 
@@ -94,7 +92,6 @@ function injectLatLong(account, cb) {
     if (!error && response.statusCode == 200) {
       var location = (JSON.parse(body)).results[0].geometry.location;
       account.latlng = location.lat + ',' + location.lng;
-      console.log(account);
       return cb(null, account);
     } else {
       return(error, null);
