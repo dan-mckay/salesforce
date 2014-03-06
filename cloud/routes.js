@@ -1,3 +1,4 @@
+var request = require('request');
 var sf = require('node-salesforce');
 var creds = require('./credentials.js');  // Used to stor API keys etc
 var queries = require('./queries.js');    // Used to build query strings
@@ -24,8 +25,6 @@ module.exports = {
       if (err) {
         res.send("Connection error: " + err);
       }
-      console.log(userInfo)
-
       res.send({ 
         accessToken: conn.accessToken,
         instanceUrl: conn.instanceUrl
@@ -72,6 +71,12 @@ module.exports = {
     });
   },
 
+  getCaseDetails: function(req, res) {
+    conn.sobject('Case').retrieve(req.params.caseId, function(err, caseDetails) {
+      if (err) res.send(err);
+      res.send(caseDetails.objectDescribe);
+    });
+  }
 
 }
 
@@ -85,26 +90,14 @@ function injectLatLong(account, cb) {
   address = address.replace(/ /g, '+');
   url = 'http://maps.googleapis.com/maps/api/geocode/json?address=' + address + '&sensor=false';
   console.log(url);
-  http.get(url, function(data) {
-    console.log('STATUS: ' + res.statusCode);
-    console.log('HEADERS: ' + JSON.stringify(res.headers));
-    res.setEncoding('utf8');
-    res.on('data', function (chunk) {
-      body += chunk;
-      console.log('BODY: ' + chunk);
-    });
-    var jsonRes = JSON.parse(data);
-    console.log('jsonRes', jsonRes);
-    if (jsonRes.status === 'OK') {
-        account.latlng = jsonRes.results[0].geometry.location.lat + ',' + jsonRes.results[0].geometry.location.lng;
-        console.log(account);
-        return cb(null, account);
+  request(url, function (error, response, body) {
+    if (!error && response.statusCode == 200) {
+      var location = (JSON.parse(body)).results[0].geometry.location;
+      account.latlng = location.lat + ',' + location.lng;
+      console.log(account);
+      return cb(null, account);
     } else {
-      return cb(null, '0,0');
+      return(error, null);
     }
-  }).on('error', function(err) {
-    return cb(err, null);
-  }).on('finish', function() {
-    return cb(null, body);
   });
 }

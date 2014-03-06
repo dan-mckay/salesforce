@@ -5,6 +5,7 @@
       "fh-webapp": "*",
       "fh-api": "*",
       "express": "3.4.8",
+      "request": "2.33.0",
       "node-salesforce": "*"
   }
 }
