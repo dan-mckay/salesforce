@@ -1,7 +1,7 @@
 var request = require('request');
 var sf = require('node-salesforce');
-var creds = require('./credentials.js');  // Used to stor API keys etc
-var queries = require('./queries.js');    // Used to build query strings
+var creds = require('./config/credentials.js');  // Used to stor API keys etc
+var queries = require('./lib/queries.js');    // Used to build query strings
 
 var conn = new sf.Connection({
   loginUrl: creds.url
@@ -13,21 +13,28 @@ module.exports = {
     res.sendfile('index.html');
   },
 
-  login: function(req, res) {
-    var userData = {};
-    // var conn = new sf.Connection({
-    //   loginUrl: creds.url
-    // });
+  callback: function(req, res) {
+    if (!req.user) {
+      throw new Error('user null');
+    }
+    res.redirect("api/login");
+  },
 
+  login: function(req, res) {
     conn.login(creds.username, creds.password, function(err, userInfo) {
       if (err) {
         res.send("Connection error: " + err);
       }
       res.send({ 
         accessToken: conn.accessToken,
-        instanceUrl: conn.instanceUrl
+        instanceUrl: conn.instanceUrl,
+        userInfo: JSON.stringify(req.user, 0, 2)
       })
     });
+  },
+
+  authfail: function(req, res) {
+    res.send('Authentication Failed', 401);
   },
   
   listAccounts: function(req, res) {

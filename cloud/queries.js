@@ -1,3 +1,4 @@
+// This file handles all of the configuration for the salesforce API queries
 var queryFields;
 
 module.exports = {
