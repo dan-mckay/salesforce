@@ -1,11 +1,20 @@
 angular.module('appServices', ['ngResource'])
-  .factory('BaseUrl', function() {
+  .factory('APIBaseUrl', function() {
     var cloud_host = $fh.cloud_props.hosts.releaseCloudUrl;
     if ( $fh.app_props.mode && $fh.app_props.mode.indexOf("dev") > -1 ) {
         cloud_host = $fh.cloud_props.hosts.debugCloudUrl;
     }
-    return cloud_host;
+    return cloud_host + '/api';
   })
-  .factory('Accounts', function ($resource) {
-    return $resource('http://127.0.0.1:8001/accounts');
+  .factory('APILogin', ['$resource', 'APIBaseUrl', function($resource, APIBaseUrl){
+    console.log('api login called from client')
+    console.log(APIBaseUrl + '/login');
+    return $resource(APIBaseUrl + '/login');
+  }])
+  // .factory('apiLogin', 'APIBaseUrl', function($resource) {
+  //   //console.log('APIBaseUrl', APIBaseUrl)
+  //   return $resource(APIBaseUrl + '/login');
+  // })
+  .factory('Accounts', function($resource) {
+    return $resource(APIBaseUrl + '/accounts');
   });

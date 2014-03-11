@@ -10,17 +10,20 @@ var conn = new sf.Connection({
 module.exports = {
 
   index: function(req, res) {
+    console.log('SERVER HIT')
     res.sendfile('index.html');
   },
 
-  callback: function(req, res) {
-    if (!req.user) {
-      throw new Error('user null');
-    }
-    res.redirect("api/login");
-  },
+  // callback: function(req, res) {
+  //   // if (!req.user) {
+  //   //   throw new Error('user null');
+  //   // }
+  //   console.log('req.user', req.user);
+  //   res.redirect("api/login");
+  // },
 
   login: function(req, res) {
+    console.log('API CALLED', req.user);
     conn.login(creds.username, creds.password, function(err, userInfo) {
       if (err) {
         res.send("Connection error: " + err);
@@ -28,7 +31,7 @@ module.exports = {
       res.send({ 
         accessToken: conn.accessToken,
         instanceUrl: conn.instanceUrl,
-        userInfo: JSON.stringify(req.user, 0, 2)
+        //userInfo: JSON.stringify(req.user, 0, 2)
       })
     });
   },

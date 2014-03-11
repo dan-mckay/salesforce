@@ -4,11 +4,12 @@ var express = require('express');
 $fh = require('fh-api');
 var path = require('path');
 var jwt = require('express-jwt');
+var cors = require('cors');
 var mainjs = require('./main.js');
 var routes = require('./routes.js');
 var creds = require('./config/credentials.js');
 
-// JSON Wec Token implementation for Auth0
+// JSON Web Token implementation for Auth0
 var authenticate = jwt({
   secret: new Buffer(creds.secret, 'base64'),
   audience: creds.audience
@@ -16,15 +17,10 @@ var authenticate = jwt({
 
 var app = express();
 
-// CORS middleware
-//
-// This Allows `FHC Local` to work, as cloud is on port 8001
-var allowCrossDomain = function(req, res, next) {
-    res.header('Access-Control-Allow-Origin', "http://127.0.0.1:8000");
-    res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
-    res.header('Access-Control-Allow-Headers', 'Content-Type');
-    res.header('Access-Control-Allow-Credentials', 'true');
-    next();
+var corsOptions = { 
+  origin: 'http://127.0.0.1:8000',
+  methods: ['GET, PUT, POST, DELETE, OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization']
 };
 
 // Use Express to parse various params and allow CORS for FHC local
@@ -33,13 +29,13 @@ app.configure(function() {
     app.use(express.cookieParser());
     app.use(express.session({ secret: 'shhhhhhhhh' }));
     app.use(express.methodOverride());
-    app.use(allowCrossDomain);
+    app.use(cors(corsOptions));
     app.use(express.urlencoded());
     app.use(express.methodOverride());
-    app.use(app.router);
-    app.use(express.static(path.join(__dirname, '../client/default')));
     // intercept all /api calls and validate the token
     app.use('/api', authenticate);
+    app.use(app.router);
+    app.use(express.static(path.join(__dirname, '../client/default')));
 });
 
 // Set up default routes so app can work as before
@@ -51,7 +47,6 @@ app.use('/cloud', webapp.cloud(mainjs));
 
 // Route definitions
 app.get('/', routes.index);
-app.get('/callback', routes.callback);
 app.get('/api/login', routes.login);
 app.get('/api/accounts', routes.listAccounts);
 app.get('/api/cases', routes.listCases);

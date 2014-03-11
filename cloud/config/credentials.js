@@ -1,7 +1,8 @@
 module.exports = {
   // Auth0 stuff
-  audience: 'o6G14uajlWx0fbiCog02pFSz5aXVH9y3',
-  secret: 'qKDR9jRgavhFwYQWqgEfBvQ1i1IRHne-81WUMZAPoKsdJSeWa-lTcUqgPYX1dDSU',
+  //domian: 'fh-dan.auth0.com',
+  audience: 'pEs0LRL0jgbs8fZpaiTHSS3qu44aknjo',
+  secret: '6INzDz4yxcz-GOkAnzosF65Yx7gFcFEu0Fp_YQ-nQnilAOHDddB9vFdjZs1jAyGv',
   // Salesforce stuff
   url: 'https://login.salesforce.com',
   username: 'gareth.murphy@feedhenry.com',
