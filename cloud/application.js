@@ -46,7 +46,6 @@ app.use('/mbaas', webapp.mbaas);
 app.use('/cloud', webapp.cloud(mainjs));
 
 // Route definitions
-app.get('/', routes.index);
 app.get('/api/login', routes.login);
 app.get('/api/accounts', routes.listAccounts);
 app.get('/api/cases', routes.listCases);

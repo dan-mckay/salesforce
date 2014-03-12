@@ -9,30 +9,12 @@ var conn = new sf.Connection({
 
 module.exports = {
 
-  index: function(req, res) {
-    console.log('SERVER HIT')
-    res.sendfile('index.html');
-  },
-
-  // callback: function(req, res) {
-  //   // if (!req.user) {
-  //   //   throw new Error('user null');
-  //   // }
-  //   console.log('req.user', req.user);
-  //   res.redirect("api/login");
-  // },
-
   login: function(req, res) {
-    console.log('API CALLED', req.user);
     conn.login(creds.username, creds.password, function(err, userInfo) {
       if (err) {
         res.send("Connection error: " + err);
       }
-      res.send({ 
-        accessToken: conn.accessToken,
-        instanceUrl: conn.instanceUrl,
-        //userInfo: JSON.stringify(req.user, 0, 2)
-      })
+      res.send(req.user);
     });
   },
 
@@ -43,28 +25,48 @@ module.exports = {
   listAccounts: function(req, res) {
     conn.query(queries.listAccounts(), function(err, result) {
       if(err) res.send(err);
-      res.send(result);
+      if(result && result.totalSize > 0) {
+        res.send(result.records);
+      }
+      else {
+        res.send(500);
+      }
     });  
   },
 
   listCases: function(req, res) {
     conn.query(queries.listCases(), function(err, result) {
       if (err) res.send(err);
-      res.send(result);
+      if(result && result.totalSize > 0) {
+        res.send(result.records);
+      }
+      else {
+        res.send(500);
+      }
     });
   },
 
   listOpps: function(req, res) {
     conn.query(queries.listOpps(), function(err, result) {
       if (err) res.send(err);
-      res.send(result);
+      if(result && result.totalSize > 0) {
+        res.send(result.records);
+      }
+      else {
+        res.send(500);
+      }
     });
   },
 
   listCampaigns: function(req, res) {
     conn.query(queries.listCampaigns(), function(err, result) {
       if (err) res.send(err);
-      res.send(result);
+      if(result && result.totalSize > 0) {
+        res.send(result.records);
+      }
+      else {
+        res.send(500);
+      }
     });
   }, 
 

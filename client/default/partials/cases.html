@@ -1,0 +1,7 @@
+<div ng-controller="CaseListCtrl">
+  <ul ng-repeat="case in cases">
+    <li>
+      <a href="" ng-click="go('/cases/' + case.Id)">{{case.Subject}}</a>
+    </li>
+  </ul>
+</div>

@@ -1,4 +1,9 @@
-<div>
-  <br />
-  <span>Welcome {{user.name}}!</span>
+<div ng-controller="RootCtrl">
+  <div class="overlay">
+    <div class="overlayBox">
+      <h3>Welcome</h3>
+      <p>{{user.name}}</p>
+      <button ng-click="go('/accounts')">Close</button>
+    </div>
+  </div>
 </div>

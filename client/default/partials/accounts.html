@@ -1,3 +1,7 @@
-<ul ng-repeat="account in accounts">
-  <li>{{account.Name}}</li>
-</ul>
+<div ng-controller="AccListCtrl">
+  <ul ng-repeat="account in accounts">
+    <li>
+      <a href="" ng-click="go('/accounts/' + account.Id)">{{account.Name}}</a>
+    </li>
+  </ul>
+</div>

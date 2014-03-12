@@ -1,0 +1,8 @@
+<div ng-controller="CampaignListCtrl">
+  <ul ng-repeat="campaign in campaigns">
+    <li>
+      <a href="" ng-click="go('/campaigns/' + campaign.Id)">{{campaign.Name}}</a>
+      <div ng-show=""></div>
+    </li>
+  </ul>
+</div>

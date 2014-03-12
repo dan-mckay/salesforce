@@ -1,20 +1,22 @@
 var myApp = angular.module('myApp', [
   'auth0',
   'authInterceptor',
-  'ngRoute', // angular-route.js
+  'ngRoute',   // angular-route.js
+  'ngCookies',  // angular-cookies.js
   'appServices',
   'appControllers'
   ]).
-  // config(['$sceDelegateProvider', function($sceDelegateProvider) {
-  //   // Used to handle cors issue of sending an options http request
-  //   $sceDelegateProvider.resourceUrlWhitelist(['self', 'http://127.0.0.1:8001/**']);
-  // }]).
   config(['$routeProvider', function($routeProvider) {
     $routeProvider
-      .when('/',        { templateUrl: 'partials/root.html',     controller: 'RootCtrl'    })
-      .when('/logout',  { template: '<p>You are now logged out</p>',   controller: 'LogoutCtrl'  })
-      .when('/login',   { templateUrl: 'partials/login.html',    controller: 'LoginCtrl'   })
-      .when('/user',    { template: '<p>User Page</p>',     controller: 'UserCtrl'    })
+      .when('/',                        { templateUrl: 'partials/root.html',            controller: 'RootCtrl'        })
+      .when('/logout',                  { template: '<p>You are now logged out</p>',    controller: 'LogoutCtrl'      })
+      .when('/login',                   { templateUrl: 'partials/login.html',           controller: 'LoginCtrl'       })
+      .when('/accounts',                { templateUrl: 'partials/accounts.html',        controller: 'AccListCtrl'     })
+      .when('/accounts/:accountId',     { templateUrl: 'partials/account.html',         controller: 'AccCtrl'         })
+      .when('/cases',                   { templateUrl: 'partials/cases.html',           controller: 'CaseListCtrl'    })
+      .when('/cases/:caseId',           { templateUrl: 'partials/case.html',            controller: 'CaseCtrl'        })
+      .when('/campaigns',               { templateUrl: 'partials/campaigns.html',       controller: 'CampaignListCtrl'})
+      .when('/campaigns/:campaignId',   { templateUrl: 'partials/campaign.html',        controller: 'CampaignCtrl'   })
       .otherwise({ redirectTo: '/login' });
   }]).
   config(['authProvider', function(authProvider) {
