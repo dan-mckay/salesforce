@@ -1,8 +1,7 @@
 <div ng-controller="CampaignListCtrl">
   <ul ng-repeat="campaign in campaigns">
     <li>
-      <a href="" ng-click="go('/campaigns/' + campaign.Id)">{{campaign.Name}}</a>
-      <div ng-show=""></div>
+      <a href="" ng-click="goToCamp(campaign)">{{campaign | json}}</a>
     </li>
   </ul>
 </div>

@@ -46,14 +46,31 @@ angular.module('appControllers', [
       caseId: $routeParams.caseId
     })
   })
-  .controller('CampaignListCtrl', function($scope, $location, Campaigns){
-    $scope.campaigns = Campaigns.query();
-    $scope.go = function(path) {
-      $location.path(path);
+  .controller('CampaignListCtrl', function($scope, $rootScope, $location, Campaigns, CampaignsCache){
+    $scope.campaigns = CampaignsCache.get('campaigns');
+    if(!$scope.campaigns) {
+      $scope.campaigns = Campaigns.query();
+      CampaignsCache.put('campaigns', $scope.campaigns);
+    }
+    $scope.goToCamp = function(camp) {
+      $rootScope.currentCampaign = camp;
+      $location.path('/campaigns/' + camp.Id);
     }
   })
-  .controller('CampaignCtrl', function($scope, $routeParams, Campaign){
-    $scope.campaign = Campaigns.get({
-      campaignId: $routeParams.campaignId
-    })
+  .controller('CampaignCtrl', function($scope, $rootScope){
+    $scope.campaign = $rootScope.currentCampaign;
+  })
+  .controller('OppsListCtrl', function($scope, $rootScope, $location, Opps, OppssCache){
+    $scope.opps = OppsCache.get('opps');
+    if(!$scope.opps) {
+      $scope.opps = Opps.query();
+      OppsCache.put('opps', $scope.opps);
+    }
+    $scope.goToOpp = function(opp) {
+      $rootScope.currentOpp = opp;
+      $location.path('/opps/' + opp.Id);
+    }
+  })
+  .controller('OppCtrl', function($scope, $rootScope){
+    $scope.opp = $rootScope.currentOpp;
   });

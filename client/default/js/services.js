@@ -1,7 +1,7 @@
 angular.module('appServices', ['ngResource'])
   .factory('APIBaseUrl', function() {
     var cloud_host = $fh.cloud_props.hosts.releaseCloudUrl;
-    if ( $fh.app_props.mode && $fh.app_props.mode.indexOf("dev") > -1 ) {
+    if ($fh.app_props.mode && $fh.app_props.mode.indexOf("dev") > -1) {
         cloud_host = $fh.cloud_props.hosts.debugCloudUrl;
     }
     return cloud_host + '/api';
@@ -18,6 +18,12 @@ angular.module('appServices', ['ngResource'])
   .factory('Campaigns', ['$resource', 'APIBaseUrl', function($resource, APIBaseUrl) {
     return $resource(APIBaseUrl + '/campaigns/:campaignId');
   }])
-  .factory('Campaign', function() {   // Used to pass scope between controllers
-    return {};
-  });
+  .factory('CampaignsCache', ['$cacheFactory', function($cacheFactory) {
+    return $cacheFactory('campaigns');
+  }])
+  .factory('Opps', ['$resource', 'APIBaseUrl', function($resource, APIBaseUrl) {
+    return $resource(APIBaseUrl + '/opps/:oppId');
+  }])
+  .factory('OppsCache', ['$cacheFactory', function($cacheFactory) {
+    return $cacheFactory('opps');
+  }]);

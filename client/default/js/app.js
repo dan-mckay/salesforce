@@ -16,7 +16,9 @@ var myApp = angular.module('myApp', [
       .when('/cases',                   { templateUrl: 'partials/cases.html',           controller: 'CaseListCtrl'    })
       .when('/cases/:caseId',           { templateUrl: 'partials/case.html',            controller: 'CaseCtrl'        })
       .when('/campaigns',               { templateUrl: 'partials/campaigns.html',       controller: 'CampaignListCtrl'})
-      .when('/campaigns/:campaignId',   { templateUrl: 'partials/campaign.html',        controller: 'CampaignCtrl'   })
+      .when('/campaigns/:campaignId',   { templateUrl: 'partials/campaign.html',        controller: 'CampaignCtrl'    })
+      .when('/opps',                    { templateUrl: 'partials/opps.html',            controller: 'OppListCtrl'     })
+      .when('/opps/:opp',               { templateUrl: 'partials/opp.html',             controller: 'OppCtrl'         })
       .otherwise({ redirectTo: '/login' });
   }]).
   config(['authProvider', function(authProvider) {
