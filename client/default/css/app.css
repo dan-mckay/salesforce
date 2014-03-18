@@ -1,33 +1,227 @@
-/* app css stylesheet */
+/*-----------------RESET-----------------*/
 
-.menu {
-  list-style: none;
-  border-bottom: 0.1em solid black;
-  margin-bottom: 2em;
-  padding: 0 0 0.5em;
-}
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
 
-.menu:before {
-  content: "[";
-}
-
-.menu:after {
-  content: "]";
-}
-
-.menu > li {
-  display: inline;
-}
-
-.menu > li:before {
-  content: "|";
-  padding-right: 0.3em;
-}
-
-.menu > li:nth-child(1):before {
-  content: "";
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
   padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+  display: block;
+}
+body {
+  line-height: 1;
+}
+ol, ul {
+  list-style: none;
+}
+blockquote, q {
+  quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+  content: '';
+  content: none;
+}
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+a {
+  text-decoration: none;
 }
 
-/* End of boilerplate css */
 
+/*-----------------GENERAL----------------*/
+
+#sp-page {
+  background-color: white;
+  color: darkgray;
+}
+#container {
+  margin: 36px auto 0 auto;
+  padding: 10px 0;
+  width: 100%;
+  content: auto;
+}
+.scroll-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  text-align: left;
+  white-space: nowrap;
+}
+.scroll-list-item {
+  padding: 15px;
+  overflow: hidden;
+  border-bottom: 1px solid #ccc;
+  background: #fafafa;
+  font-size: 1em;
+}
+.scroll-list a {
+  color: #343434;
+}
+
+/*-----------------TYPOGRAPHY----------------*/
+@font-face {
+  font-family: 'entypo';
+  src: url('../font/entypo.eot'); /* IE9 Compat Modes */
+  src: url('../font/entypo.woff') format('woff'), /* Modern Browsers */
+       url('../font/entypo.ttf')  format('truetype'), /* Safari, Android, iOS */
+       url('../font/entypo.svg#entypo') format('svg'); /* Legacy iOS */
+}
+body {
+  font-family: 'Nobile', sans-serif;
+  /*font-weight: bold;*/
+}
+h1 {
+  font-size: 1.3em;
+}
+.icon {
+  font-family: entypo;
+  font-size: 1.8em;
+  white-space: nowrap;
+  line-height: 0.5em;
+}
+.capitalise {
+  text-transform: capitalize;
+}
+
+/*----------------- APP LOGIN SCREEN ----------------*/
+#root {
+  width: 80%;
+  margin: 70px auto;
+}
+.btn-holder {
+  width: 170px;
+  margin: 70px auto;
+}
+.btn-link {
+  padding: 15px;
+  /*background: #da3715;*/
+  background: #e75d5c;
+  color: #FFF;
+  border-radius: 7px;
+}
+#root img {
+  width: 100%;
+}
+.sf-holder {
+  width: 50%;
+  margin: 70px auto;
+}
+
+/*----------------- NAV MENU ----------------*/
+#sp-nav {
+  background-color: #ecebe7;
+  letter-spacing: -0.07em;
+}
+#sp-nav li {
+  font-size: 1.3em;
+  padding: 12px 10px 10px 10px;
+  border-bottom: 1px solid #e75d5c;
+  font-weight: bold;
+}
+#sp-nav a {
+  color: #343434;
+}
+#sp-nav .icon {
+  margin-right: 10px;
+  color: #e75d5c;
+}
+
+/*----------------- HEADER ----------------*/
+#header-container {
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  z-index: 1000;
+}
+
+#appHeader {
+  background-color: #343434;
+  padding: 15px 10px 10px 10px;
+  color: #fff;
+  z-index:1001;
+}
+header a {
+  color: #fff;
+  float: left;
+}
+header .icon {
+  line-height: 0.4em;
+  margin: 0 20px 0 0;
+  color: #e75d5c;
+  font-size: 3em;
+}
+
+/*-----------------ACCOUNTS LIST SCREEN----------------*/
+.acc-li {
+  border-left: 6px solid #e2e2e2;
+}
+.Hot {
+  border-left-color: #e75d5c;
+}
+.Warm {
+  border-left-color: #ffc938;
+}
+.Cold {
+  border-left-color: #56adff;
+}
+
+/*-----------------ACCOUNT SCREEN----------------*/
+#accountHead {
+  width: 100%;
+  height: 250px;
+  position: relative;
+}
+#mapCanvas {
+  height: 100%;
+}
+#mapCanvas,
+#overlay {
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+}
+
+#overlay {
+  background: #fefefe;
+  z-index: 10;
+  
+  background-color: rgba(0, 0, 0, 0.33);
+  /*text-shadow: 0 0.1rem 0.3rem rgba(0, 0, 0, 0.33);*/
+  color: #fff;
+  font-weight: bold;
+  padding: 10px;
+}
+#overlay h1 {
+  margin-bottom: 10px;
+}
+#overlay .icon {
+  margin-right: 10px;
+}

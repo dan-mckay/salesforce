@@ -1,6 +1,6 @@
 <div ng-controller="CampaignListCtrl">
-  <ul ng-repeat="campaign in campaigns">
-    <li>
+  <ul>
+    <li ng-repeat="campaign in campaigns">
       <a href="" ng-click="goToCamp(campaign)">{{campaign | json}}</a>
     </li>
   </ul>

@@ -1,0 +1,26 @@
+<div id="sp-nav" class="nav">
+  <div ng-controller="MenuCtrl">
+    <ul>
+      <li class="capitalise" ng-repeat="item in menuItems">
+        <span class="icon">{{item.icon}}</span>
+        <a href="" ng-click="go('/' + item.name, $spMenu)">{{item.name}}</a>
+      </li>
+      <li>
+        <span class="icon">&#128100;</span>
+        <a href="" ng-click="go('/user', $spMenu)">{{user.name}}</a>
+      </li>
+      <li>
+        <span class="icon">&#10006;</span>
+        <a href="" ng-click="go('/logout', $spMenu)">Logout</a>
+      </li>
+    </ul>
+  </div>
+</div>
+<div id="sp-page">
+  <div ng-include src="'partials/header.html'"></div>
+</div>
+
+
+<a class="" href="" ng-click="$spMenu.toggle()">
+    <span class="icon">&#9776;</span>
+  </a>

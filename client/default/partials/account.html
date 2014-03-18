@@ -1,3 +1,11 @@
 <div ng-controller="AccCtrl">
+  <div id="accountHead">
+    <div id="mapCanvas"></div>
+    <a href="#">{{marker.position}}</a>
+    <div id="overlay">
+      <h1>{{account.Name}}</h1>
+      <span class="icon">&#59148;</span>{{account.Industry}}
+    </div>
+  </div>
   <p>{{account | json}}</p>
 </div>

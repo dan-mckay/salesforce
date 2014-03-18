@@ -90,6 +90,7 @@ module.exports = {
 
 }
 
+// This function queries the Goole Maps API for the business' GPS coords, by using their address.
 function injectLatLong(account, cb) {
   var url, body = '';
   var address = [
@@ -99,11 +100,12 @@ function injectLatLong(account, cb) {
   ].join(', ');
   address = address.replace(/ /g, '+');
   url = 'http://maps.googleapis.com/maps/api/geocode/json?address=' + address + '&sensor=false';
-  console.log(url);
   request(url, function (error, response, body) {
     if (!error && response.statusCode == 200) {
       var location = (JSON.parse(body)).results[0].geometry.location;
       account.latlng = location.lat + ',' + location.lng;
+      account.lat = parseFloat(location.lat);
+      account.lng = parseFloat(location.lng);
       return cb(null, account);
     } else {
       return(error, null);

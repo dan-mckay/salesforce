@@ -1,5 +1,4 @@
 /* Controllers */
-
 angular.module('appControllers', [
   'appServices',
   'ngCookies'
@@ -11,42 +10,87 @@ angular.module('appControllers', [
     auth.signout();
     $location.path('/login');
   })
-  .controller('RootCtrl', function(auth, $scope, $cookieStore, $location, APILogin) {
+  .controller('HeaderCtrl', function($scope, $location, PageTitle) {
+    $scope.PageTitle = PageTitle;
+    $scope.go = function(path) {
+      $location.path(path);
+    }
+  })
+  .controller('RootCtrl', function(auth, $scope, $location, CurrentUser, APILogin) {
     if (!auth.isAuthenticated) {
       $location.path('/login');
       return;
     }
     $scope.auth = auth;
-    var user = APILogin.get();
-    $cookieStore.put('user', user);     // Store the user in session storage
+    var user = APILogin.get(function(data) {
+      CurrentUser.setUser(data);
+    });
     $scope.user = user;
     $scope.go = function(path) {
       $location.path(path);
     }
   })
-  .controller('AccListCtrl', function($scope, $location, Accounts){
-    $scope.accounts = Accounts.query();
+  .controller('MenuCtrl', function($scope, $location, CurrentUser, MenuItems) {
+    $scope.user = CurrentUser.getUser();
+    $scope.menuItems = MenuItems;
+    $scope.go = function(path, $spMenu) {
+      if(path == "/opportunities") {
+        path = '/opps'; 
+      }
+      $location.path(path);
+      $spMenu.hide();
+    }
+  })
+  .controller('AccListCtrl', function($scope, $location, Accounts, AccountsCache, PageTitle) {
+    PageTitle.setTitle('Accounts');
+    $scope.accounts = AccountsCache.get('accounts');
+    if(!$scope.accounts) {
+      $scope.accounts = Accounts.query();
+      AccountsCache.put('accounts', $scope.accounts);
+    }
     $scope.go = function(path) {
       $location.path(path);
     }
   })
-  .controller('AccCtrl', function($scope, $routeParams, Accounts){
-    $scope.account = Accounts.get({
+  .controller('AccCtrl', function($scope, $routeParams, Accounts) {
+    Accounts.get({
       accountId: $routeParams.accountId
-    })
+    }, function(data) {
+      $scope.account = data;
+      // Map stuff for header
+      var mapContainer = document.getElementById('mapCanvas');
+      var mapOptions = {
+        zoom: 11,
+        center: new google.maps.LatLng(data.lat, data.lng),
+        mapTypeId: google.maps.MapTypeId.ROADMAP
+      }
+      $scope.map = new google.maps.Map(mapContainer, mapOptions);
+      var marker = new google.maps.Marker({
+        map: $scope.map,
+        position: new google.maps.LatLng(data.lat, data.lng),
+        title: $scope.account.Name
+      });
+      $scope.marker = marker;
+    });
   })
-  .controller('CaseListCtrl', function($scope, $location, Cases){
-    $scope.cases = Cases.query();
+  .controller('CaseListCtrl', function($scope, $location, Cases, CasesCache, PageTitle) {
+    PageTitle.setTitle('Cases');
+    $scope.cases = CasesCache.get('cases');
+    if(!$scope.cases) {
+      $scope.cases = Cases.query();
+      CasesCache.put('cases', $scope.cases);
+    }
     $scope.go = function(path) {
       $location.path(path);
     }
   })
-  .controller('CaseCtrl', function($scope, $routeParams, Cases){
+  .controller('CaseCtrl', function($scope, $routeParams, Cases) {
     $scope.case = Cases.get({
       caseId: $routeParams.caseId
     })
   })
-  .controller('CampaignListCtrl', function($scope, $rootScope, $location, Campaigns, CampaignsCache){
+  .controller('CampaignListCtrl', function($scope, $rootScope, $location, Campaigns, CampaignsCache, PageTitle) {
+    PageTitle.setTitle('Campaigns');
     $scope.campaigns = CampaignsCache.get('campaigns');
     if(!$scope.campaigns) {
       $scope.campaigns = Campaigns.query();
@@ -57,10 +101,11 @@ angular.module('appControllers', [
       $location.path('/campaigns/' + camp.Id);
     }
   })
-  .controller('CampaignCtrl', function($scope, $rootScope){
+  .controller('CampaignCtrl', function($scope, $rootScope) {
     $scope.campaign = $rootScope.currentCampaign;
   })
-  .controller('OppsListCtrl', function($scope, $rootScope, $location, Opps, OppssCache){
+  .controller('OppListCtrl', function($scope, $rootScope, $location, Opps, OppsCache, PageTitle) {
+    PageTitle.setTitle('Opportunities');
     $scope.opps = OppsCache.get('opps');
     if(!$scope.opps) {
       $scope.opps = Opps.query();
@@ -71,6 +116,13 @@ angular.module('appControllers', [
       $location.path('/opps/' + opp.Id);
     }
   })
-  .controller('OppCtrl', function($scope, $rootScope){
+  .controller('OppCtrl', function($scope, $rootScope) {
     $scope.opp = $rootScope.currentOpp;
-  });
+  })
+  .controller('UserCtrl', function($scope, CurrentUser) {
+    $scope.user = CurrentUser.getUser();
+  }); 
+
+
+
+

@@ -1,0 +1,7 @@
+<div ng-controller="OppListCtrl">
+  <ul>
+    <li ng-repeat="opp in opps">
+      <a href="" ng-click="goToOpp(opp)">{{opp | json}}</a>
+    </li>
+  </ul>
+</div>

@@ -1,6 +1,7 @@
 var myApp = angular.module('myApp', [
   'auth0',
   'authInterceptor',
+  'shoppinpal.mobile-menu',
   'ngRoute',   // angular-route.js
   'ngCookies',  // angular-cookies.js
   'appServices',
@@ -19,6 +20,7 @@ var myApp = angular.module('myApp', [
       .when('/campaigns/:campaignId',   { templateUrl: 'partials/campaign.html',        controller: 'CampaignCtrl'    })
       .when('/opps',                    { templateUrl: 'partials/opps.html',            controller: 'OppListCtrl'     })
       .when('/opps/:opp',               { templateUrl: 'partials/opp.html',             controller: 'OppCtrl'         })
+      .when('/user',                    { templateUrl: 'partials/user.html',            controller: 'UserCtrl'        })
       .otherwise({ redirectTo: '/login' });
   }]).
   config(['authProvider', function(authProvider) {
