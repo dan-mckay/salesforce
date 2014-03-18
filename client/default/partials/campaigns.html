@@ -1,7 +1,8 @@
 <div ng-controller="CampaignListCtrl">
-  <ul>
-    <li ng-repeat="campaign in campaigns">
-      <a href="" ng-click="goToCamp(campaign)">{{campaign | json}}</a>
+  <ul class="scroll-list">
+    <li ng-repeat="campaign in campaigns" class="scroll-list-item">
+      <span class="elipsis"><a href="" ng-click="goToCamp(campaign)">{{campaign.Name}}</a></span>
+      <aside class="footnote">{{campaign.Status}}</aside>
     </li>
   </ul>
 </div>

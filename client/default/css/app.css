@@ -83,6 +83,12 @@ a {
 .scroll-list a {
   color: #343434;
 }
+.elipsis {
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  display: block;
+  overflow: hidden;
+}
 .titleCont {
   font-size: 1.05em;
   padding: 10px;
@@ -143,6 +149,11 @@ h1 {
 }
 .capitalise {
   text-transform: capitalize;
+}
+.footnote {
+  font-size: 0.8em;
+  font-style: italic;
+  margin-top: 7px;
 }
 
 /*----------------- APP LOGIN SCREEN ----------------*/
@@ -218,13 +229,16 @@ header .icon {
 .acc-li {
   border-left: 6px solid #e2e2e2;
 }
-.Hot {
+.Hot,
+.High {
   border-left-color: #e75d5c;
 }
-.Warm {
+.Warm,
+.Medium {
   border-left-color: #ffc938;
 }
-.Cold {
+.Cold,
+.Low {
   border-left-color: #56adff;
 }
 
@@ -270,4 +284,8 @@ header .icon {
 }
 .contactLinks .icon {
   margin-right: 10px;
+}
+/*-----------------CASES LIST SCREEN----------------*/
+.true {
+  text-decoration: line-through;
 }

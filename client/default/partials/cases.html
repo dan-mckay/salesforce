@@ -1,7 +1,7 @@
 <div ng-controller="CaseListCtrl">
-  <ul ng-repeat="case in cases">
-    <li>
-      <a href="" ng-click="go('/cases/' + case.Id)">{{case.Subject}}</a>
+  <ul class="scroll-list">
+    <li ng-repeat="case in cases" class="scroll-list-item acc-li {{case.Priority}}">
+      <span class="elipsis"><a href="" class="{{case.IsClosed}}" ng-click="go('/cases/' + case.Id)">{{case.Subject}}</a></span>
     </li>
   </ul>
 </div>

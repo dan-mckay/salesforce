@@ -1,3 +1,14 @@
 <div ng-controller="CaseCtrl">
-  <p>{{case | json}}</p>
+  <div class="tabular">
+    <dl>
+      <dt>Case Number</dt><dd>{{case.CaseNumber}}</dd>
+      <dt>Reason</dt><dd>{{case.Reason}}</dd>
+      <dt>Type</dt><dd>{{case.Type}}</dd>
+      <dt>Status</dt><dd>{{case.Status}}</dd>
+      <dt>Origin</dt><dd>{{case.Origin}}</dd>
+      <dt>Subject</dt><dd>{{case.Subject}}</dd>
+      <dt>Priority</dt><dd>{{case.Priority}}</dd>
+      <dt>Closed</dt><dd>{{case.IsClosed}}</dd>
+    </dl>
+  </div>
 </div>

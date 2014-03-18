@@ -55,18 +55,3 @@ app.get('/api/accounts/:accountId', routes.accountDetails);
 app.get('/api/cases/:caseId', routes.caseDetails);
 
 module.exports = app.listen(process.env.FH_PORT || process.env.VCAP_APP_PORT || 8001);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

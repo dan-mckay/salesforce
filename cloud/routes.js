@@ -38,7 +38,16 @@ module.exports = {
     conn.query(queries.listCases(), function(err, result) {
       if (err) res.send(err);
       if(result && result.totalSize > 0) {
-        res.send(result.records);
+        var sorted = [];
+        for(var i = 0; i !== result.totalSize; i++) {
+          if(!result.records[i].IsClosed) {
+            sorted.unshift(result.records[i]);
+          }
+          else {
+            sorted.push(result.records[i]);
+          }
+        }
+        res.send(sorted);
       }
       else {
         res.send(500);
