@@ -2,8 +2,9 @@ var myApp = angular.module('myApp', [
   'auth0',
   'authInterceptor',
   'shoppinpal.mobile-menu',
-  'ngRoute',   // angular-route.js
-  'ngCookies',  // angular-cookies.js
+  'easypiechart',
+  'ngRoute',   
+  'ngCookies',
   'appServices',
   'appControllers'
   ]).

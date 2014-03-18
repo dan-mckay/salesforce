@@ -1,4 +1,16 @@
 <div ng-controller="CampaignCtrl">
-  here
-  <p>{{campaign | json}}</p>
+  <span class="chart" easypiechart ng-init="" percent="percent" options="options">
+    <span class="percent" ng-bind="percent"></span>
+  </span>
+  <div class="budget">
+    <p class="grey"><span class="icon">&#128318;</span>Budget: {{campaign.BudgetedCost | currency:"€"}}</p>
+    <p class="{{classColour}}"><span class="icon">{{thisIcon}}</span>Actual: {{campaign.ActualCost | currency:"€"}}</p>
+  </div>
+  <div class="tabular">
+    <dl>
+      <dt>Name</dt><dd>{{campaign.Name}}</dd>
+      <dt>Status</dt><dd>{{campaign.Status}}</dd>
+      <dt>Active</dt><dd>{{campaign.IsActive}}</dd>
+    </dl>
+  </div>
 </div>

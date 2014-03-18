@@ -1,3 +1,15 @@
 <div ng-controller="UserCtrl">
-  <p>{{user | json}}</p>
+  <div id="userImgHolder" class="grey">
+    <img src="{{user.picture}}" class="left" alt="User Image">
+    <div class="">
+      <p class="firstName">{{user.given_name}}</p>
+      <p>{{user.family_name}}</p>
+    </div>
+  </div>
+  <div class="tabular">
+    <dl>
+      <dt>Name</dt><dd>{{user.name}}</dd>
+      <dt>Email</dt><dd>{{user.email}}</dd>
+    </dl>
+  </div>
 </div>

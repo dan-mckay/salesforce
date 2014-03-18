@@ -1,3 +1,13 @@
 <div ng-controller="OppCtrl">
-  <p>{{opp | json}}</p>
+  <div class="tabular">
+    <dl>
+      <dt>Name</dt><dd>{{opp.Name}}</dd>
+      <dt>Type</dt><dd>{{opp.Type}}</dd>
+      <dt>Fiscal Year</dt><dd>{{opp.FiscalYear}}</dd>
+      <dt>Fiscal Quarter</dt><dd>{{opp.FiscalQuarter}}</dd>
+      <dt>Status</dt><dd>{{opp.StageName}}</dd>
+      <dt>Expected Revenue</dt><dd>{{opp.ExpectedRevenue | currency:"€"}}</dd>
+      <dt>Actual Revenue</dt><dd>{{opp.Amount | currency:"€"}}</dd>
+    </dl>
+  </div>
 </div>

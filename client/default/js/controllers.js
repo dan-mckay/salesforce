@@ -103,6 +103,27 @@ angular.module('appControllers', [
   })
   .controller('CampaignCtrl', function($scope, $rootScope) {
     $scope.campaign = $rootScope.currentCampaign;
+    var barColour = '#5be55b'; // Green
+    $scope.classColour = 'green';
+    $scope.thisIcon = '\ud83d\udc4d'; // Thumbsup
+    // Pie-chart
+    $scope.percent = Math.round(($scope.campaign.ActualCost / $scope.campaign.BudgetedCost) * 100);
+    if($scope.percent > 100) {
+      barColour = '#e75d5c';  //Red
+      $scope.classColour = 'red';
+      $scope.thisIcon = '\ud83d\udc4e'; // Thumbsdown
+    }
+    $scope.options = {
+      animate:{
+        duration: 1000,
+        enabled: true
+      },
+      barColor: barColour,
+      scaleColor: false,
+      lineWidth: 15,
+      lineCap: 'circle',
+      size: 160
+    };
   })
   .controller('OppListCtrl', function($scope, $rootScope, $location, Opps, OppsCache, PageTitle) {
     PageTitle.setTitle('Opportunities');
@@ -119,8 +140,9 @@ angular.module('appControllers', [
   .controller('OppCtrl', function($scope, $rootScope) {
     $scope.opp = $rootScope.currentOpp;
   })
-  .controller('UserCtrl', function($scope, CurrentUser) {
+  .controller('UserCtrl', function($scope, CurrentUser, PageTitle) {
     $scope.user = CurrentUser.getUser();
+    PageTitle.setTitle('User Details');
   }); 
 
 

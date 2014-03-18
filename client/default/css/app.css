@@ -54,7 +54,6 @@ a {
 
 
 /*-----------------GENERAL----------------*/
-
 #sp-page {
   background-color: white;
   color: darkgray;
@@ -107,6 +106,9 @@ a {
 .red {
   background: #e75d5c;
 }
+.green {
+  background: #5be55b;
+}
 .tabular {
   padding: 10px;
 }
@@ -124,6 +126,9 @@ dd {
   font-size: 1.1em;
   border-bottom: 1px solid #e75d5c;
   color: #343434;
+}
+.left {
+  float: left;
 }
 
 /*-----------------TYPOGRAPHY----------------*/
@@ -288,4 +293,59 @@ header .icon {
 /*-----------------CASES LIST SCREEN----------------*/
 .true {
   text-decoration: line-through;
+}
+
+/*-----------------CAMPAIGN SCREEN----------------*/
+.percent {
+  display: block;
+  position: absolute;
+  z-index: 2;
+  color: #343434;
+  font-size: 1.6em;
+  margin: auto;
+  position: absolute;
+  top: 0; left: 0; bottom: 0; right: 0;
+  height: 30px;
+}
+.percent:after {
+  content: '%';
+  margin-left: 0.1em;
+  font-size: 1em;
+}
+.chart {
+  display: block;
+  width: 100%;
+  text-align:center;
+  position: relative;
+  margin: 30px 0;
+}
+.chart canvas{
+  display: inline;
+}
+.budget p {
+  color: #fff;
+  padding: 12px 10px;
+  font-size: 1.05em;
+  font-weight: normal;
+  display: block;
+  letter-spacing: 0.05em;
+}
+.budget .icon {
+  margin-right: 10px;
+}
+
+/*-----------------USER SCREEN----------------*/
+#userImgHolder {
+  padding: 10px;
+  background: #ecebe7;
+  overflow: auto;
+  font-size: 1.8em;
+  color: #e75d5c;
+}
+#userImgHolder img {
+  width: 25%;
+  margin-right: 10px;
+}
+.firstName {
+  margin-bottom: 10px;
 }
