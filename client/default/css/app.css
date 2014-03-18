@@ -83,6 +83,42 @@ a {
 .scroll-list a {
   color: #343434;
 }
+.titleCont {
+  font-size: 1.05em;
+  padding: 10px;
+  color: #343434;
+  background: #ecebe7;
+}
+.titleCont p {
+  margin-bottom: 10px
+}
+.titleCont p:last-child {
+  margin-bottom: 0px
+}
+.grey {
+  background: #6b6b6b;
+}
+.red {
+  background: #e75d5c;
+}
+.tabular {
+  padding: 10px;
+}
+dt {
+  font-weight: bold;
+  display: inline-block;
+  width: 100%;
+  color: #6b6b6b;
+  margin: 0.3em 0;
+}
+
+dd {
+  margin: 0.3em 0;
+  padding: 0 0 0.5em 0;
+  font-size: 1.1em;
+  border-bottom: 1px solid #e75d5c;
+  color: #343434;
+}
 
 /*-----------------TYPOGRAPHY----------------*/
 @font-face {
@@ -212,9 +248,8 @@ header .icon {
 #overlay {
   background: #fefefe;
   z-index: 10;
-  
   background-color: rgba(0, 0, 0, 0.33);
-  /*text-shadow: 0 0.1rem 0.3rem rgba(0, 0, 0, 0.33);*/
+  text-shadow: 0 0.1rem 0.3rem rgba(0, 0, 0, 0.33);
   color: #fff;
   font-weight: bold;
   padding: 10px;
@@ -223,5 +258,16 @@ header .icon {
   margin-bottom: 10px;
 }
 #overlay .icon {
+  margin-right: 10px;
+}
+.contactLinks a {
+  color: #fff;
+  padding: 12px 10px;
+  font-size: 1.05em;
+  font-weight: normal;
+  display: block;
+  letter-spacing: 0.05em;
+}
+.contactLinks .icon {
   margin-right: 10px;
 }

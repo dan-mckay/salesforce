@@ -7,5 +7,22 @@
       <span class="icon">&#59148;</span>{{account.Industry}}
     </div>
   </div>
-  <p>{{account | json}}</p>
+  <div class="titleCont">
+    <p>{{account.BillingStreet}}</p>
+    <p>{{account.BillingCity}}</p>
+    <p>{{account.BillingCountry}}</p>
+  </div>
+  <div class="contactLinks">
+    <a href="tel:{{account.Phone}}" class="red"><span class="icon">&#128222;</span>{{account.Phone}}</a>
+    <a href="{{account.Website}}" class="grey"><span class="icon">&#59254;</span>Website</a>
+  </div>
+  <div class="tabular">
+    <dl>
+      <dt>Name</dt><dd>{{account.Name}}</dd>
+      <dt>Account Number</dt><dd>{{account.AccountNumber}}</dd>
+      <dt>Industry</dt><dd>{{account.Industry}}</dd>
+      <dt>Type</dt><dd>{{account.Type}}</dd>
+      <dt>Rating</dt><dd>{{account.Rating}}</dd>
+    </dl>
+  </div>
 </div>
