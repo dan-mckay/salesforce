@@ -28,7 +28,7 @@ var myApp = angular.module('myApp', [
     authProvider.init({
       domain:         'fh-dan.auth0.com',
       clientID:       'pEs0LRL0jgbs8fZpaiTHSS3qu44aknjo',
-      callbackURL:    'https://psdev-ngjx1eo30qr3wz6wq5qti6lz-dev_psdev.df.dev.e111.feedhenry.net/login',
+      callbackURL:    'https://psdev-ngjx1eo30qr3wz6wq5qti6lz-dev_psdev.df.dev.e111.feedhenry.net/api/login',
       callbackOnLocationHash: true
     });
   }]);
