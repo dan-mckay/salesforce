@@ -28,7 +28,7 @@ var myApp = angular.module('myApp', [
     authProvider.init({
       domain:         'fh-dan.auth0.com',
       clientID:       'pEs0LRL0jgbs8fZpaiTHSS3qu44aknjo',
-      callbackURL:    'http://127.0.0.1:8000/',
+      callbackURL:    '/',
       callbackOnLocationHash: true
     });
   }]);
