@@ -18,7 +18,7 @@ var authenticate = jwt({
 var app = express();
 
 var corsOptions = { 
-  origin: 'http://127.0.0.1:8000',
+  origin: 'https://psdev-ngjx1eo30qr3wz6wq5qti6lz-dev_psdev.df.dev.e111.feedhenry.net',
   methods: ['GET, PUT, POST, DELETE, OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization']
 };
